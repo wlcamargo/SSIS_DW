@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "DW_PBI_CHAMPION", "STG_For_DW\DW_PBI_CHAMPION.dtproj", "{2DE94454-62B6-46F2-9FAB-632026BF5914}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2DE94454-62B6-46F2-9FAB-632026BF5914}.Development|Default.ActiveCfg = Development
+		{2DE94454-62B6-46F2-9FAB-632026BF5914}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {66CB4A92-6815-43AA-8341-38DC69C0EF38}
+	EndGlobalSection
+EndGlobal

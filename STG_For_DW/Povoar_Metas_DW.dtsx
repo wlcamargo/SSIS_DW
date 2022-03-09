@@ -1,0 +1,655 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/2/2022 7:31:26 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-UL4QIO3"
+  DTS:CreatorName="DESKTOP-UL4QIO3\walla"
+  DTS:DTSID="{BF27E62E-2288-44EA-AA66-49137D2011A7}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Povoar_Metas_DW"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{D6139A95-3443-4FB7-BCCC-457B1D3F982D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Gerenciador de Conexões do Analysis Services]"
+      DTS:CreationName="MSOLAP100"
+      DTS:DTSID="{BF8041E4-1DFD-4A37-9833-3D0919DCAEC7}"
+      DTS:ObjectName="Gerenciador de Conexões do Analysis Services">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Gerenciador de Conexões do Excel]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{C2B6B40D-4A43-43A7-864F-CED55019F03E}"
+      DTS:ObjectName="Gerenciador de Conexões do Excel">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="+ @[User::Nome_do_Arquivo] +";Extended Properties=\"Excel 12.0 XML;HDR=YES\""</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\walla\OneDrive\Área de Trabalho\Metas\Janeiro 2020.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost]"
+      DTS:CreationName="MSOLAP100"
+      DTS:DTSID="{2F22CD3E-6B8B-40B8-B895-5A07FDBBD25B}"
+      DTS:ObjectName="localhost">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Data Source=localhost;PROVIDER=MSOLAP;Impersonation Level=Impersonate;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.DW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{00F16865-6FFF-40D7-83B9-C84D85EADD54}"
+      DTS:ObjectName="localhost.DW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=DW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[sql]"
+      DTS:CreationName="ADO.NET:SQL"
+      DTS:DTSID="{D6CD2A9A-A146-488F-97DD-B02837AD3C4A}"
+      DTS:ObjectName="sql">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-UL4QIO3;Integrated Security=SSPI;Connect Timeout=30;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[{508A2233-7186-40EF-A8D8-D4804CC69E89\}]"
+      DTS:CreationName="ADO.NET:SQL"
+      DTS:DTSID="{508A2233-7186-40EF-A8D8-D4804CC69E89}"
+      DTS:ObjectName="{508A2233-7186-40EF-A8D8-D4804CC69E89}">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8BDC7D53-F5BA-468F-A6A7-0855583FBE1D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Nome_do_Arquivo">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\walla\OneDrive\Área de Trabalho\Metas\Janeiro 2020.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Apagar Registro DW fMetas"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{F8CC7525-0241-4377-808C-241A92D1A89D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Apagar Registro DW fMetas"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{00F16865-6FFF-40D7-83B9-C84D85EADD54}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE fMetas" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Input de todas Metas Mensais"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Contêiner do Loop Foreach"
+      DTS:DTSID="{59265DCA-3822-4BE2-8BD9-100F0CA22372}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Input de todas Metas Mensais">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{C0B8964C-9A33-4185-AAF2-FCABA1995E7B}"
+        DTS:ObjectName="{C0B8964C-9A33-4185-AAF2-FCABA1995E7B}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\Users\walla\OneDrive\Área de Trabalho\Metas" />
+            <FEFEProperty
+              FileSpec="*.xlsx" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:DTSID="{FBA8B05A-BEE7-4344-BD92-9205DB30870C}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Excel --&gt; SQL Server"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino OLE DB"
+                  name="DW_fMetas"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[dbo].[fMetas]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[localhost.DW]"
+                      connectionManagerRefId="Package.ConnectionManagers[localhost.DW]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas.Inputs[Entrada de Destino OLE DB]"
+                      errorOrTruncationOperation="Inserir"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de Destino OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas.Inputs[Entrada de Destino OLE DB].Columns[DATA]"
+                          cachedDataType="date"
+                          cachedName="DATA"
+                          externalMetadataColumnId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas.Inputs[Entrada de Destino OLE DB].ExternalColumns[DATA_META]"
+                          lineageId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Origem do Excel].Columns[DATA]" />
+                        <inputColumn
+                          refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas.Inputs[Entrada de Destino OLE DB].Columns[META]"
+                          cachedDataType="r8"
+                          cachedName="META"
+                          externalMetadataColumnId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas.Inputs[Entrada de Destino OLE DB].ExternalColumns[VAL_META]"
+                          lineageId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Origem do Excel].Columns[META]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_META]"
+                          dataType="i4"
+                          name="ID_META" />
+                        <externalMetadataColumn
+                          refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas.Inputs[Entrada de Destino OLE DB].ExternalColumns[DATA_META]"
+                          dataType="dbDate"
+                          name="DATA_META" />
+                        <externalMetadataColumn
+                          refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas.Inputs[Entrada de Destino OLE DB].ExternalColumns[VAL_META]"
+                          dataType="cy"
+                          name="VAL_META" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas.Outputs[Saída de Erro de Destino OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Destino OLE DB"
+                      synchronousInputId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas.Inputs[Entrada de Destino OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Origem do Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;1"
+                  description="Origem do Excel"
+                  name="Planilhas com as metas"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">Sheet1$</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="A variável que contém o comando SQL a ser executado."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="O mapeamento de parâmetros no comando SQL para variáveis."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Gerenciador de Conexões do Excel]"
+                      connectionManagerRefId="Package.ConnectionManagers[Gerenciador de Conexões do Excel]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Origem do Excel]"
+                      name="Saída de Origem do Excel">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Origem do Excel].Columns[DATA]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Origem do Excel].ExternalColumns[DATA]"
+                          lineageId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Origem do Excel].Columns[DATA]"
+                          name="DATA"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Origem do Excel].Columns[META]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Origem do Excel].ExternalColumns[META]"
+                          lineageId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Origem do Excel].Columns[META]"
+                          name="META"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Origem do Excel].ExternalColumns[DATA]"
+                          dataType="date"
+                          name="DATA" />
+                        <externalMetadataColumn
+                          refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Origem do Excel].ExternalColumns[META]"
+                          dataType="r8"
+                          name="META" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Erro de Origem do Excel]"
+                      isErrorOut="true"
+                      name="Saída de Erro de Origem do Excel">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Erro de Origem do Excel].Columns[DATA]"
+                          dataType="date"
+                          lineageId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Erro de Origem do Excel].Columns[DATA]"
+                          name="DATA" />
+                        <outputColumn
+                          refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Erro de Origem do Excel].Columns[META]"
+                          dataType="r8"
+                          lineageId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Erro de Origem do Excel].Columns[META]"
+                          name="META" />
+                        <outputColumn
+                          refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Erro de Origem do Excel].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server.Paths[Saída de Origem do Excel]"
+                  endId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas.Inputs[Entrada de Destino OLE DB]"
+                  name="Saída de Origem do Excel"
+                  startId="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas.Outputs[Saída de Origem do Excel]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{35439A1E-E438-4208-82DB-D03CF2D1E5F7}"
+          DTS:ObjectName="{35439A1E-E438-4208-82DB-D03CF2D1E5F7}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::Nome_do_Arquivo" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarefa Notificar Operador"
+      DTS:CreationName="Microsoft.DbMaintenanceNotifyOperatorTask"
+      DTS:Description="Tarefa Notificar Operador"
+      DTS:DTSID="{68524C8F-4414-4631-A5D8-D7C8B433F7BE}"
+      DTS:ExecutableType="Microsoft.DbMaintenanceNotifyOperatorTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarefa Notificar Operador"
+      DTS:TaskContact="Notify Operator Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D6CD2A9A-A146-488F-97DD-B02837AD3C4A}"
+          SQLTask:ServerVersion="15"
+          SQLTask:ExtendedLogging="True"
+          SQLTask:LocalConnectionForLogging=""
+          SQLTask:TaskName=""
+          SQLTask:IgnoreDatabasesInNotOnlineState="False"
+          SQLTask:Message="Teste de SSIS"
+          SQLTask:Profile="DefaultProfile"
+          SQLTask:Subject="Testando" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:OperatorNotifyList
+            SQLTask:OperatorNotify="Wallace" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição]"
+      DTS:CreationName=""
+      DTS:DTSID="{B33C48C9-3E1B-4CE5-8082-9FB51CC6E17C}"
+      DTS:From="Package\Apagar Registro DW fMetas"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição"
+      DTS:To="Package\Input de todas Metas Mensais" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{BA5C7964-D070-4C02-8DA1-672C7B753691}"
+      DTS:From="Package\Input de todas Metas Mensais"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição 1"
+      DTS:To="Package\Tarefa Notificar Operador" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<Objects
+  Version="8">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="208,41.6"
+          Id="Package\Apagar Registro DW fMetas"
+          TopLeft="367.857149121713,35.9411769746496" />
+        <NodeLayout
+          Size="176.8,41.6"
+          Id="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server"
+          TopLeft="33.3571433315472,15.4411766100094" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="246.4,116.8"
+          Size="246.4,160"
+          Id="Package\Input de todas Metas Mensais"
+          TopLeft="52.8571437572942,99.4117661000956" />
+        <NodeLayout
+          Size="198.4,41.6"
+          Id="Package\Tarefa Notificar Operador"
+          TopLeft="556.428580904494,217.176473634054" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição]"
+          TopLeft="367.857149121713,56.7411769746496">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-68.6000053644188,97.3372557921126"
+              Start="0,0"
+              End="-61.1000053644188,97.3372557921126">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-36.7524784343082,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-36.7524784343082,0"
+                    Point2="-40.7524784343082,0"
+                    Point3="-40.7524784343082,4" />
+                  <mssgle:LineSegment
+                    End="-40.7524784343082,93.3372557921126" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-40.7524784343082,93.3372557921126"
+                    Point2="-40.7524784343082,97.3372557921126"
+                    Point3="-44.7524784343082,97.3372557921126" />
+                  <mssgle:LineSegment
+                    End="-61.1000053644188,97.3372557921126" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição 1]"
+          TopLeft="299.257143757294,204.745099433429">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="257.1714371472,33.2313742006251"
+              Start="0,0"
+              End="249.6714371472,33.2313742006251">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="100.396325970645,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="100.396325970645,0"
+                    Point2="104.396325970645,0"
+                    Point3="104.396325970645,4" />
+                  <mssgle:LineSegment
+                    End="104.396325970645,29.2313742006251" />
+                  <mssgle:CubicBezierSegment
+                    Point1="104.396325970645,29.2313742006251"
+                    Point2="104.396325970645,33.2313742006251"
+                    Point3="108.396325970645,33.2313742006251" />
+                  <mssgle:LineSegment
+                    End="249.6714371472,33.2313742006251" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[Gerenciador de Conexões do Analysis Services]">
+    <ProjectReferenceName></ProjectReferenceName>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[localhost]">
+    <ProjectReferenceName></ProjectReferenceName>
+  </ConnectionManager>
+  <TaskHost
+    design-time-name="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas"
+          TopLeft="151.428574007385,43.5882359054262" />
+        <NodeLayout
+          Size="132,41.6"
+          Id="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas"
+          TopLeft="188.571431782781,138.411766647055" />
+        <EdgeLayout
+          Id="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server.Paths[Saída de Origem do Excel]"
+          TopLeft="245.428574007385,85.1882359054262">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.14285777539621,53.2235307416288"
+              Start="0,0"
+              End="9.14285777539621,45.7235307416288">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.6117653708144" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.6117653708144"
+                    Point2="0,26.6117653708144"
+                    Point3="4,26.6117653708144" />
+                  <mssgle:LineSegment
+                    End="5.14285777539621,26.6117653708144" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.14285777539621,26.6117653708144"
+                    Point2="9.14285777539621,26.6117653708144"
+                    Point3="9.14285777539621,30.6117653708144" />
+                  <mssgle:LineSegment
+                    End="9.14285777539621,45.7235307416288" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\DW_fMetas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Input de todas Metas Mensais\Excel --&gt; SQL Server\Planilhas com as metas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

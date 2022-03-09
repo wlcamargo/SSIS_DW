@@ -1,0 +1,905 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/1/2022 6:23:17 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-UL4QIO3"
+  DTS:CreatorName="DESKTOP-UL4QIO3\walla"
+  DTS:DTSID="{B5C91A75-E333-44C3-AD6D-C1F414143F96}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Povoar_Fato_DW"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{D3F3B42C-148D-4924-88EF-C1B657CE33E0}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.DW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7B0AE088-B03E-43AA-A1F9-3A66416F8AE5}"
+      DTS:ObjectName="localhost.DW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=DW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.STG]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2822CFA2-BDE2-4023-A433-41E9892158FD}"
+      DTS:ObjectName="localhost.STG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=STG;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Povoar Fato DW"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{E1B671FC-F7F2-45A8-A9C5-2DDA7F8668F2}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Povoar Fato DW"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Povoar Fato DW\DW_fVendas"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="DW_fVendas"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[fVendas]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Povoar Fato DW\DW_fVendas.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.DW]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].Columns[ID_VENDA]"
+                      cachedDataType="i4"
+                      cachedName="ID_VENDA"
+                      externalMetadataColumnId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_VENDA]"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[ID_VENDA]" />
+                    <inputColumn
+                      refId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].Columns[DATA_VENDA]"
+                      cachedDataType="dbDate"
+                      cachedName="DATA_VENDA"
+                      externalMetadataColumnId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].ExternalColumns[DATA_VENDA]"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[DATA_VENDA]" />
+                    <inputColumn
+                      refId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].Columns[ID_CLIENTE]"
+                      cachedDataType="i4"
+                      cachedName="ID_CLIENTE"
+                      externalMetadataColumnId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_CLIENTE]"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[ID_CLIENTE]" />
+                    <inputColumn
+                      refId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].Columns[ID_LOJA]"
+                      cachedDataType="i4"
+                      cachedName="ID_LOJA"
+                      externalMetadataColumnId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_LOJA]"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[ID_LOJA]" />
+                    <inputColumn
+                      refId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].Columns[ID_PRODUTO]"
+                      cachedDataType="i4"
+                      cachedName="ID_PRODUTO"
+                      externalMetadataColumnId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_PRODUTO]"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[ID_PRODUTO]" />
+                    <inputColumn
+                      refId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].Columns[QTD_VENDIDA]"
+                      cachedDataType="i4"
+                      cachedName="QTD_VENDIDA"
+                      externalMetadataColumnId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].ExternalColumns[QTD_VENDIDA]"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[QTD_VENDIDA]" />
+                    <inputColumn
+                      refId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].Columns[VAL_UNIT]"
+                      cachedDataType="cy"
+                      cachedName="VAL_UNIT"
+                      externalMetadataColumnId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].ExternalColumns[VAL_UNIT]"
+                      lineageId="Package\Povoar Fato DW\Preço_Unit.Outputs[Saída de Correspondência de Pesquisa].Columns[VAL_UNIT]" />
+                    <inputColumn
+                      refId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].Columns[VAL_TOTAL]"
+                      cachedDataType="numeric"
+                      cachedName="VAL_TOTAL"
+                      cachedPrecision="30"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].ExternalColumns[VAL_TOTAL]"
+                      lineageId="Package\Povoar Fato DW\Valor Total Venda.Outputs[Saída de Coluna Derivada].Columns[VAL_TOTAL]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_VENDA]"
+                      dataType="i4"
+                      name="ID_VENDA" />
+                    <externalMetadataColumn
+                      refId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].ExternalColumns[DATA_VENDA]"
+                      dataType="dbDate"
+                      name="DATA_VENDA" />
+                    <externalMetadataColumn
+                      refId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_CLIENTE]"
+                      dataType="i4"
+                      name="ID_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_LOJA]"
+                      dataType="i4"
+                      name="ID_LOJA" />
+                    <externalMetadataColumn
+                      refId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_PRODUTO]"
+                      dataType="i4"
+                      name="ID_PRODUTO" />
+                    <externalMetadataColumn
+                      refId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].ExternalColumns[QTD_VENDIDA]"
+                      dataType="i4"
+                      name="QTD_VENDIDA" />
+                    <externalMetadataColumn
+                      refId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].ExternalColumns[VAL_UNIT]"
+                      dataType="cy"
+                      name="VAL_UNIT" />
+                    <externalMetadataColumn
+                      refId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB].ExternalColumns[VAL_TOTAL]"
+                      dataType="cy"
+                      name="VAL_TOTAL" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Povoar Fato DW\DW_fVendas.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\DW_fVendas.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Povoar Fato DW\DW_fVendas.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\DW_fVendas.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Povoar Fato DW\DW_fVendas.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Povoar Fato DW\Preço_Unit"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Pesquisa;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;6"
+              description="Une colunas adicionais aos fluxos de dados pesquisando valores de uma tabela. Por exemplo, una à coluna 'employee id' a tabela de funcionários para obter 'hire date' e 'employee name'. Essa transformação é recomendada quando a tabela de pesquisa está de acordo com a memória."
+              name="Preço_Unit"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica a instrução SQL que gera a tabela de pesquisa."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[TB_PRECOS_PRODUTOS]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica uma instrução SQL que usa parâmetros para gerar a tabela de pesquisa."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[TB_PRECOS_PRODUTOS]) [refTable]
+where [refTable].[ID_PRODUTO] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o tipo de conexão usado para acessar o conjunto de dados de referência."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o tipo de cache da tabela de pesquisa."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica como a transformação Pesquisa trata as linhas sem entradas correspondentes no conjunto de dados de referência."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a porcentagem do cache alocada para linhas sem entradas correspondentes no conjunto de dados de referência."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Uso Máximo de Memória para o Cache de Referência em uma plataforma de 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Uso Máximo de Memória para o Cache de Referência em uma plataforma de 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indica se os metadados de referência em um formato XML devem ser referenciados."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ID_PRODUTO" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VAL_UNIT" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Especifica a lista de identificadores de linhagem mapeados para os parâmetros usados pela instrução SQL na propriedade SQLCommand. As entradas na lista são separadas por ponto e vírgulas."
+                  name="ParameterMap">#{Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[ID_PRODUTO]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina se as chaves duplicadas nos dados de referência devem ser tratadas como erros quando o modo de cache cheio é usado."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Povoar Fato DW\Preço_Unit.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.STG]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.STG]"
+                  description="O gerenciador de conexões usado para acessar dados de pesquisa."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Povoar Fato DW\Preço_Unit.Inputs[Entrada de Pesquisa]"
+                  name="Entrada de Pesquisa">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Povoar Fato DW\Preço_Unit.Inputs[Entrada de Pesquisa].Columns[ID_PRODUTO]"
+                      cachedDataType="i4"
+                      cachedName="ID_PRODUTO"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[ID_PRODUTO]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica a coluna na tabela de referência que uma coluna une."
+                          name="JoinToReferenceColumn">ID_PRODUTO</property>
+                        <property
+                          dataType="System.Null"
+                          description="Especifica a coluna na tabela de referência a partir da qual uma coluna é copiada."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Povoar Fato DW\Preço_Unit.Outputs[Saída de Correspondência de Pesquisa]"
+                  errorOrTruncationOperation="Pesquisa"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Saída de Correspondência de Pesquisa"
+                  synchronousInputId="Package\Povoar Fato DW\Preço_Unit.Inputs[Entrada de Pesquisa]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\Preço_Unit.Outputs[Saída de Correspondência de Pesquisa].Columns[VAL_UNIT]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Copiar Coluna"
+                      lineageId="Package\Povoar Fato DW\Preço_Unit.Outputs[Saída de Correspondência de Pesquisa].Columns[VAL_UNIT]"
+                      name="VAL_UNIT"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica a coluna na tabela de referência a partir da qual uma coluna é copiada."
+                          name="CopyFromReferenceColumn">VAL_UNIT</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Povoar Fato DW\Preço_Unit.Outputs[Saída Sem Correspondência de Pesquisa]"
+                  description="A saída de Pesquisa que trata as linhas sem entradas correspondentes no conjunto de dados de referência. Use essa saída quando a propriedade NoMatchBehavior estiver definida como &quot;Enviar as linhas sem entradas correspondentes para a saída sem correspondência&quot;."
+                  exclusionGroup="1"
+                  name="Saída Sem Correspondência de Pesquisa"
+                  synchronousInputId="Package\Povoar Fato DW\Preço_Unit.Inputs[Entrada de Pesquisa]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Povoar Fato DW\Preço_Unit.Outputs[Saída de Erro de Pesquisa]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Pesquisa"
+                  synchronousInputId="Package\Povoar Fato DW\Preço_Unit.Inputs[Entrada de Pesquisa]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\Preço_Unit.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Povoar Fato DW\Preço_Unit.Outputs[Saída de Erro de Pesquisa].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\Preço_Unit.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Povoar Fato DW\Preço_Unit.Outputs[Saída de Erro de Pesquisa].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Povoar Fato DW\STG_fVendas"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="STG_fVendas"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[TB_VENDAS]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Povoar Fato DW\STG_fVendas.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.STG]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.STG]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[ID_VENDA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].ExternalColumns[ID_VENDA]"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[ID_VENDA]"
+                      name="ID_VENDA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[DATA_VENDA]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].ExternalColumns[DATA_VENDA]"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[DATA_VENDA]"
+                      name="DATA_VENDA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[ID_CLIENTE]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].ExternalColumns[ID_CLIENTE]"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[ID_CLIENTE]"
+                      name="ID_CLIENTE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[ID_LOJA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].ExternalColumns[ID_LOJA]"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[ID_LOJA]"
+                      name="ID_LOJA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[ID_PRODUTO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].ExternalColumns[ID_PRODUTO]"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[ID_PRODUTO]"
+                      name="ID_PRODUTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[QTD_VENDIDA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].ExternalColumns[QTD_VENDIDA]"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[QTD_VENDIDA]"
+                      name="QTD_VENDIDA"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].ExternalColumns[ID_VENDA]"
+                      dataType="i4"
+                      name="ID_VENDA" />
+                    <externalMetadataColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].ExternalColumns[DATA_VENDA]"
+                      dataType="dbDate"
+                      name="DATA_VENDA" />
+                    <externalMetadataColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].ExternalColumns[ID_CLIENTE]"
+                      dataType="i4"
+                      name="ID_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].ExternalColumns[ID_LOJA]"
+                      dataType="i4"
+                      name="ID_LOJA" />
+                    <externalMetadataColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].ExternalColumns[ID_PRODUTO]"
+                      dataType="i4"
+                      name="ID_PRODUTO" />
+                    <externalMetadataColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].ExternalColumns[QTD_VENDIDA]"
+                      dataType="i4"
+                      name="QTD_VENDIDA" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Erro de Origem OLE DB].Columns[ID_VENDA]"
+                      dataType="i4"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Erro de Origem OLE DB].Columns[ID_VENDA]"
+                      name="ID_VENDA" />
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Erro de Origem OLE DB].Columns[DATA_VENDA]"
+                      dataType="dbDate"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Erro de Origem OLE DB].Columns[DATA_VENDA]"
+                      name="DATA_VENDA" />
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Erro de Origem OLE DB].Columns[ID_CLIENTE]"
+                      dataType="i4"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Erro de Origem OLE DB].Columns[ID_CLIENTE]"
+                      name="ID_CLIENTE" />
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Erro de Origem OLE DB].Columns[ID_LOJA]"
+                      dataType="i4"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Erro de Origem OLE DB].Columns[ID_LOJA]"
+                      name="ID_LOJA" />
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Erro de Origem OLE DB].Columns[ID_PRODUTO]"
+                      dataType="i4"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Erro de Origem OLE DB].Columns[ID_PRODUTO]"
+                      name="ID_PRODUTO" />
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Erro de Origem OLE DB].Columns[QTD_VENDIDA]"
+                      dataType="i4"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Erro de Origem OLE DB].Columns[QTD_VENDIDA]"
+                      name="QTD_VENDIDA" />
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Povoar Fato DW\Valor Total Venda"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Coluna Derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Cria novos valores de coluna aplicando expressões a colunas de entrada da transformação. Crie novas colunas ou substitua as existentes. Por exemplo, concatene os valores das colunas 'first name' e 'last name' para formar uma coluna 'full name'."
+              name="Valor Total Venda"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Povoar Fato DW\Valor Total Venda.Inputs[Entrada de Coluna Derivada]"
+                  description="Entrada para a Transformação Coluna Derivada"
+                  name="Entrada de Coluna Derivada">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Povoar Fato DW\Valor Total Venda.Inputs[Entrada de Coluna Derivada].Columns[QTD_VENDIDA]"
+                      cachedDataType="i4"
+                      cachedName="QTD_VENDIDA"
+                      lineageId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[QTD_VENDIDA]" />
+                    <inputColumn
+                      refId="Package\Povoar Fato DW\Valor Total Venda.Inputs[Entrada de Coluna Derivada].Columns[VAL_UNIT]"
+                      cachedDataType="cy"
+                      cachedName="VAL_UNIT"
+                      lineageId="Package\Povoar Fato DW\Preço_Unit.Outputs[Saída de Correspondência de Pesquisa].Columns[VAL_UNIT]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Povoar Fato DW\Valor Total Venda.Outputs[Saída de Coluna Derivada]"
+                  description="Saída Padrão da Transformação Coluna Derivada"
+                  exclusionGroup="1"
+                  name="Saída de Coluna Derivada"
+                  synchronousInputId="Package\Povoar Fato DW\Valor Total Venda.Inputs[Entrada de Coluna Derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\Valor Total Venda.Outputs[Saída de Coluna Derivada].Columns[VAL_TOTAL]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computação"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Povoar Fato DW\Valor Total Venda.Outputs[Saída de Coluna Derivada].Columns[VAL_TOTAL]"
+                      name="VAL_TOTAL"
+                      precision="30"
+                      scale="4"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão de Coluna Derivada"
+                          name="Expression">#{Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB].Columns[QTD_VENDIDA]} * #{Package\Povoar Fato DW\Preço_Unit.Outputs[Saída de Correspondência de Pesquisa].Columns[VAL_UNIT]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expressão Amigável de Coluna Derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">QTD_VENDIDA * VAL_UNIT</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Povoar Fato DW\Valor Total Venda.Outputs[Saída de Erro de Coluna Derivada]"
+                  description="Saída de Erro da Transformação Coluna Derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Coluna Derivada"
+                  synchronousInputId="Package\Povoar Fato DW\Valor Total Venda.Inputs[Entrada de Coluna Derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\Valor Total Venda.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Povoar Fato DW\Valor Total Venda.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Povoar Fato DW\Valor Total Venda.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Povoar Fato DW\Valor Total Venda.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Povoar Fato DW.Paths[Saída de Coluna Derivada]"
+              endId="Package\Povoar Fato DW\DW_fVendas.Inputs[Entrada de Destino OLE DB]"
+              name="Saída de Coluna Derivada"
+              startId="Package\Povoar Fato DW\Valor Total Venda.Outputs[Saída de Coluna Derivada]" />
+            <path
+              refId="Package\Povoar Fato DW.Paths[Saída de Correspondência de Pesquisa]"
+              endId="Package\Povoar Fato DW\Valor Total Venda.Inputs[Entrada de Coluna Derivada]"
+              name="Saída de Correspondência de Pesquisa"
+              startId="Package\Povoar Fato DW\Preço_Unit.Outputs[Saída de Correspondência de Pesquisa]" />
+            <path
+              refId="Package\Povoar Fato DW.Paths[Saída de Origem OLE DB]"
+              endId="Package\Povoar Fato DW\Preço_Unit.Inputs[Entrada de Pesquisa]"
+              name="Saída de Origem OLE DB"
+              startId="Package\Povoar Fato DW\STG_fVendas.Outputs[Saída de Origem OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<Objects
+  Version="8">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\Povoar Fato DW"
+          TopLeft="97.1428587971902,37.470588760805" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Povoar Fato DW">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="140.8,41.6"
+          Id="Package\Povoar Fato DW\STG_fVendas"
+          TopLeft="52.8571437572947,23.7058826854072" />
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\Povoar Fato DW\Preço_Unit"
+          TopLeft="91.4285729855907,100.176471993172" />
+        <EdgeLayout
+          Id="Package\Povoar Fato DW.Paths[Saída de Origem OLE DB]"
+          TopLeft="123.257143757295,65.3058826854072">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="32.971429228296,34.8705893077652"
+              Start="0,0"
+              End="32.971429228296,27.3705893077652">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.4352946538826" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.4352946538826"
+                    Point2="0,17.4352946538826"
+                    Point3="4,17.4352946538826" />
+                  <mssgle:LineSegment
+                    End="28.971429228296,17.4352946538826" />
+                  <mssgle:CubicBezierSegment
+                    Point1="28.971429228296,17.4352946538826"
+                    Point2="32.971429228296,17.4352946538826"
+                    Point3="32.971429228296,21.4352946538826" />
+                  <mssgle:LineSegment
+                    End="32.971429228296,27.3705893077652" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Povoar Fato DW\Valor Total Venda"
+          TopLeft="128.571430760987,177.411767194015" />
+        <EdgeLayout
+          Id="Package\Povoar Fato DW.Paths[Saída de Correspondência de Pesquisa]"
+          TopLeft="156.228572985591,141.776471993172">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="53.5428577753963,35.6352952008429"
+              Start="0,0"
+              End="53.5428577753963,28.1352952008429">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.8176476004215" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.8176476004215"
+                    Point2="0,17.8176476004215"
+                    Point3="4,17.8176476004215" />
+                  <mssgle:LineSegment
+                    End="49.5428577753963,17.8176476004215" />
+                  <mssgle:CubicBezierSegment
+                    Point1="49.5428577753963,17.8176476004215"
+                    Point2="53.5428577753963,17.8176476004215"
+                    Point3="53.5428577753963,21.8176476004215" />
+                  <mssgle:LineSegment
+                    End="53.5428577753963,28.1352952008429" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-58.6025945498018,22.8176476004215,170.748046875,12.1953125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="138.4,41.6"
+          Id="Package\Povoar Fato DW\DW_fVendas"
+          TopLeft="205.714289217579,261.529415432557" />
+        <EdgeLayout
+          Id="Package\Povoar Fato DW.Paths[Saída de Coluna Derivada]"
+          TopLeft="209.771430760987,219.011767194015">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="65.1428584565923,42.5176482385418"
+              Start="0,0"
+              End="65.1428584565923,35.0176482385418">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.2588241192709" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.2588241192709"
+                    Point2="0,21.2588241192709"
+                    Point3="4,21.2588241192709" />
+                  <mssgle:LineSegment
+                    End="61.1428584565923,21.2588241192709" />
+                  <mssgle:CubicBezierSegment
+                    Point1="61.1428584565923,21.2588241192709"
+                    Point2="65.1428584565923,21.2588241192709"
+                    Point3="65.1428584565923,25.2588241192709" />
+                  <mssgle:LineSegment
+                    End="65.1428584565923,35.0176482385418" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Povoar Fato DW\STG_fVendas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Povoar Fato DW\Preço_Unit">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[TB_PRECOS_PRODUTOS]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Povoar Fato DW\DW_fVendas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

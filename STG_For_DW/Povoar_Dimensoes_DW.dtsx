@@ -1,0 +1,1495 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/1/2022 4:43:43 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-UL4QIO3"
+  DTS:CreatorName="DESKTOP-UL4QIO3\walla"
+  DTS:DTSID="{DE08DDDE-E775-4282-A9E3-402BE25F7775}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Povoar_Dimensoes_DW"
+  DTS:PackageType="5"
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{D1396A9B-DD24-489D-AEB6-86991D4799BC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.DW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D67E310C-7C05-4A86-91E0-EBA0659BB301}"
+      DTS:ObjectName="localhost.DW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=DW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.DW 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{72F8F080-5807-4E86-8834-EEE294D30F7D}"
+      DTS:ObjectName="localhost.DW 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=DW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.STG]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E2FA2713-DB24-498B-A160-744F0CA67603}"
+      DTS:ObjectName="localhost.STG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=STG;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="localhost.DW"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Grava entradas no log de eventos em um banco de dados SQL Server"
+      DTS:DTSID="{86EEDA45-CFE5-4302-9193-C8BFF9E535A0}"
+      DTS:ObjectName="Provedor de log SSIS log para o SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables />
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">1,7,OnError</DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{86EEDA45-CFE5-4302-9193-C8BFF9E535A0}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Fluxo_DW"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{BE6E0806-1710-4E7B-87DE-C2A9AF62E612}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fluxo_DW"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Fluxo_DW\DW_dClientes"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="DW_dClientes"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dClientes]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Fluxo_DW\DW_dClientes.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.DW 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.DW 1]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].Columns[ID_CLIENTE]"
+                      cachedDataType="i4"
+                      cachedName="ID_CLIENTE"
+                      externalMetadataColumnId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_CLIENTE]"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[ID_CLIENTE]" />
+                    <inputColumn
+                      refId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].Columns[NOME_CLIENTE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NOME_CLIENTE"
+                      externalMetadataColumnId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME_CLIENTE]"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[NOME_CLIENTE]" />
+                    <inputColumn
+                      refId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].Columns[BAIRRO_CLIENTE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BAIRRO_CLIENTE"
+                      externalMetadataColumnId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].ExternalColumns[BAIRRO_CLIENTE]"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[BAIRRO_CLIENTE]" />
+                    <inputColumn
+                      refId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].Columns[ESTADO_CLIENTE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ESTADO_CLIENTE"
+                      externalMetadataColumnId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].ExternalColumns[ESTADO_CLIENTE]"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[ESTADO_CLIENTE]" />
+                    <inputColumn
+                      refId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].Columns[PAIS_CLIENTE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PAIS_CLIENTE"
+                      externalMetadataColumnId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].ExternalColumns[PAIS_CLIENTE]"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[PAIS_CLIENTE]" />
+                    <inputColumn
+                      refId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].Columns[E-MAIL_CLIENTE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="E-MAIL_CLIENTE"
+                      externalMetadataColumnId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].ExternalColumns[E-MAIL_CLIENTE]"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[E-MAIL_CLIENTE]" />
+                    <inputColumn
+                      refId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].Columns[SEXO_CLIENTE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SEXO_CLIENTE"
+                      externalMetadataColumnId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].ExternalColumns[SEXO_CLIENTE]"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[SEXO_CLIENTE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_CLIENTE]"
+                      dataType="i4"
+                      name="ID_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOME_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      name="NOME_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].ExternalColumns[BAIRRO_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      name="BAIRRO_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].ExternalColumns[ESTADO_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      name="ESTADO_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].ExternalColumns[PAIS_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      name="PAIS_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].ExternalColumns[E-MAIL_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      name="E-MAIL_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB].ExternalColumns[SEXO_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      name="SEXO_CLIENTE" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Fluxo_DW\DW_dClientes.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fluxo_DW\DW_dClientes.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Fluxo_DW\DW_dClientes.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\DW_dClientes.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Fluxo_DW\DW_dClientes.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Fluxo_DW\DW_dLojas"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="DW_dLojas"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dLojas]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Fluxo_DW\DW_dLojas.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.DW 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.DW 1]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Fluxo_DW\DW_dLojas.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Fluxo_DW\DW_dLojas.Inputs[Entrada de Destino OLE DB].Columns[ID_LOJA]"
+                      cachedDataType="i4"
+                      cachedName="ID_LOJA"
+                      externalMetadataColumnId="Package\Fluxo_DW\DW_dLojas.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_LOJA]"
+                      lineageId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].Columns[ID_LOJA]" />
+                    <inputColumn
+                      refId="Package\Fluxo_DW\DW_dLojas.Inputs[Entrada de Destino OLE DB].Columns[BAIRRO_LOJA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BAIRRO_LOJA"
+                      externalMetadataColumnId="Package\Fluxo_DW\DW_dLojas.Inputs[Entrada de Destino OLE DB].ExternalColumns[BAIRRO_LOJA]"
+                      lineageId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].Columns[BAIRRO_LOJA]" />
+                    <inputColumn
+                      refId="Package\Fluxo_DW\DW_dLojas.Inputs[Entrada de Destino OLE DB].Columns[CIDADE_LOJA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CIDADE_LOJA"
+                      externalMetadataColumnId="Package\Fluxo_DW\DW_dLojas.Inputs[Entrada de Destino OLE DB].ExternalColumns[CIDADE_LOJA]"
+                      lineageId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].Columns[CIDADE_LOJA]" />
+                    <inputColumn
+                      refId="Package\Fluxo_DW\DW_dLojas.Inputs[Entrada de Destino OLE DB].Columns[ESTADO_LOJA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ESTADO_LOJA"
+                      externalMetadataColumnId="Package\Fluxo_DW\DW_dLojas.Inputs[Entrada de Destino OLE DB].ExternalColumns[ESTADO_LOJA]"
+                      lineageId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].Columns[ESTADO_LOJA]" />
+                    <inputColumn
+                      refId="Package\Fluxo_DW\DW_dLojas.Inputs[Entrada de Destino OLE DB].Columns[PAIS_LOJA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PAIS_LOJA"
+                      externalMetadataColumnId="Package\Fluxo_DW\DW_dLojas.Inputs[Entrada de Destino OLE DB].ExternalColumns[PAIS_LOJA]"
+                      lineageId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].Columns[PAIS_LOJA]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\DW_dLojas.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_LOJA]"
+                      dataType="i4"
+                      name="ID_LOJA" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\DW_dLojas.Inputs[Entrada de Destino OLE DB].ExternalColumns[BAIRRO_LOJA]"
+                      dataType="wstr"
+                      length="255"
+                      name="BAIRRO_LOJA" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\DW_dLojas.Inputs[Entrada de Destino OLE DB].ExternalColumns[CIDADE_LOJA]"
+                      dataType="wstr"
+                      length="255"
+                      name="CIDADE_LOJA" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\DW_dLojas.Inputs[Entrada de Destino OLE DB].ExternalColumns[ESTADO_LOJA]"
+                      dataType="wstr"
+                      length="255"
+                      name="ESTADO_LOJA" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\DW_dLojas.Inputs[Entrada de Destino OLE DB].ExternalColumns[PAIS_LOJA]"
+                      dataType="wstr"
+                      length="255"
+                      name="PAIS_LOJA" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Fluxo_DW\DW_dLojas.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\Fluxo_DW\DW_dLojas.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fluxo_DW\DW_dLojas.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Fluxo_DW\DW_dLojas.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\DW_dLojas.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Fluxo_DW\DW_dLojas.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Fluxo_DW\DW_dProdutos"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="DW_dProdutos"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dProdutos]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Fluxo_DW\DW_dProdutos.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.DW 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.DW 1]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Fluxo_DW\DW_dProdutos.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Fluxo_DW\DW_dProdutos.Inputs[Entrada de Destino OLE DB].Columns[ID_PRODUTO]"
+                      cachedDataType="i4"
+                      cachedName="ID_PRODUTO"
+                      externalMetadataColumnId="Package\Fluxo_DW\DW_dProdutos.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_PRODUTO]"
+                      lineageId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].Columns[ID_PRODUTO]" />
+                    <inputColumn
+                      refId="Package\Fluxo_DW\DW_dProdutos.Inputs[Entrada de Destino OLE DB].Columns[PRODUTO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PRODUTO"
+                      externalMetadataColumnId="Package\Fluxo_DW\DW_dProdutos.Inputs[Entrada de Destino OLE DB].ExternalColumns[PRODUTO]"
+                      lineageId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].Columns[PRODUTO]" />
+                    <inputColumn
+                      refId="Package\Fluxo_DW\DW_dProdutos.Inputs[Entrada de Destino OLE DB].Columns[ID_CATEGORIA]"
+                      cachedDataType="i4"
+                      cachedName="ID_CATEGORIA"
+                      externalMetadataColumnId="Package\Fluxo_DW\DW_dProdutos.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_CATEGORIA]"
+                      lineageId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].Columns[ID_CATEGORIA]" />
+                    <inputColumn
+                      refId="Package\Fluxo_DW\DW_dProdutos.Inputs[Entrada de Destino OLE DB].Columns[CATEGORIA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CATEGORIA"
+                      externalMetadataColumnId="Package\Fluxo_DW\DW_dProdutos.Inputs[Entrada de Destino OLE DB].ExternalColumns[CATEGORIA]"
+                      lineageId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].Columns[CATEGORIA]" />
+                    <inputColumn
+                      refId="Package\Fluxo_DW\DW_dProdutos.Inputs[Entrada de Destino OLE DB].Columns[FORNECEDOR_PRODUTO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="FORNECEDOR_PRODUTO"
+                      externalMetadataColumnId="Package\Fluxo_DW\DW_dProdutos.Inputs[Entrada de Destino OLE DB].ExternalColumns[FORNECEDOR_PRODUTO]"
+                      lineageId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].Columns[FORNECEDOR_PRODUTO]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\DW_dProdutos.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_PRODUTO]"
+                      dataType="i4"
+                      name="ID_PRODUTO" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\DW_dProdutos.Inputs[Entrada de Destino OLE DB].ExternalColumns[PRODUTO]"
+                      dataType="wstr"
+                      length="255"
+                      name="PRODUTO" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\DW_dProdutos.Inputs[Entrada de Destino OLE DB].ExternalColumns[ID_CATEGORIA]"
+                      dataType="i4"
+                      name="ID_CATEGORIA" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\DW_dProdutos.Inputs[Entrada de Destino OLE DB].ExternalColumns[CATEGORIA]"
+                      dataType="wstr"
+                      length="255"
+                      name="CATEGORIA" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\DW_dProdutos.Inputs[Entrada de Destino OLE DB].ExternalColumns[FORNECEDOR_PRODUTO]"
+                      dataType="wstr"
+                      length="255"
+                      name="FORNECEDOR_PRODUTO" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Fluxo_DW\DW_dProdutos.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\Fluxo_DW\DW_dProdutos.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fluxo_DW\DW_dProdutos.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Fluxo_DW\DW_dProdutos.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\DW_dProdutos.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Fluxo_DW\DW_dProdutos.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Fluxo_DW\STG_dClientes"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="STG_dClientes"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">USE STG;
+
+SELECT
+NC.ID_CLIENTE,
+NC.NOME_CLIENTE,
+EC.BAIRRO_CLIENTE,
+EC.ESTADO_CLIENTE,
+EC.PAIS_CLIENTE,
+EMC.[E-MAIL_CLIENTE],
+SC.SEXO_CLIENTE
+
+FROM TB_NOMES_CLIENTES NC
+INNER JOIN TB_EMAIL_CLIENTES EMC 
+	ON EMC.ID_CLIENTE = NC.ID_CLIENTE
+
+INNER JOIN TB_ENDERECO_CLIENTES EC 
+	ON EC.ID_CLIENTE = NC.ID_CLIENTE
+
+INNER JOIN TB_SEXO_CLIENTES SC 
+	ON NC.ID_CLIENTE = SC.ID_CLIENTE</property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Fluxo_DW\STG_dClientes.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.STG]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.STG]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[ID_CLIENTE]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].ExternalColumns[ID_CLIENTE]"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[ID_CLIENTE]"
+                      name="ID_CLIENTE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[NOME_CLIENTE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].ExternalColumns[NOME_CLIENTE]"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[NOME_CLIENTE]"
+                      name="NOME_CLIENTE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[BAIRRO_CLIENTE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].ExternalColumns[BAIRRO_CLIENTE]"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[BAIRRO_CLIENTE]"
+                      name="BAIRRO_CLIENTE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[ESTADO_CLIENTE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].ExternalColumns[ESTADO_CLIENTE]"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[ESTADO_CLIENTE]"
+                      name="ESTADO_CLIENTE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[PAIS_CLIENTE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].ExternalColumns[PAIS_CLIENTE]"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[PAIS_CLIENTE]"
+                      name="PAIS_CLIENTE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[E-MAIL_CLIENTE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].ExternalColumns[E-MAIL_CLIENTE]"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[E-MAIL_CLIENTE]"
+                      name="E-MAIL_CLIENTE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[SEXO_CLIENTE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].ExternalColumns[SEXO_CLIENTE]"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].Columns[SEXO_CLIENTE]"
+                      name="SEXO_CLIENTE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].ExternalColumns[ID_CLIENTE]"
+                      dataType="i4"
+                      name="ID_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].ExternalColumns[NOME_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      name="NOME_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].ExternalColumns[BAIRRO_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      name="BAIRRO_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].ExternalColumns[ESTADO_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      name="ESTADO_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].ExternalColumns[PAIS_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      name="PAIS_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].ExternalColumns[E-MAIL_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      name="E-MAIL_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB].ExternalColumns[SEXO_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      name="SEXO_CLIENTE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB].Columns[ID_CLIENTE]"
+                      dataType="i4"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB].Columns[ID_CLIENTE]"
+                      name="ID_CLIENTE" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB].Columns[NOME_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB].Columns[NOME_CLIENTE]"
+                      name="NOME_CLIENTE" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB].Columns[BAIRRO_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB].Columns[BAIRRO_CLIENTE]"
+                      name="BAIRRO_CLIENTE" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB].Columns[ESTADO_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB].Columns[ESTADO_CLIENTE]"
+                      name="ESTADO_CLIENTE" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB].Columns[PAIS_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB].Columns[PAIS_CLIENTE]"
+                      name="PAIS_CLIENTE" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB].Columns[E-MAIL_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB].Columns[E-MAIL_CLIENTE]"
+                      name="E-MAIL_CLIENTE" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB].Columns[SEXO_CLIENTE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB].Columns[SEXO_CLIENTE]"
+                      name="SEXO_CLIENTE" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Fluxo_DW\STG_dLojas"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="STG_dLojas"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[TB_LOJAS]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Fluxo_DW\STG_dLojas.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.STG]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.STG]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].Columns[ID_LOJA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].ExternalColumns[ID_LOJA]"
+                      lineageId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].Columns[ID_LOJA]"
+                      name="ID_LOJA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].Columns[BAIRRO_LOJA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].ExternalColumns[BAIRRO_LOJA]"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].Columns[BAIRRO_LOJA]"
+                      name="BAIRRO_LOJA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].Columns[CIDADE_LOJA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].ExternalColumns[CIDADE_LOJA]"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].Columns[CIDADE_LOJA]"
+                      name="CIDADE_LOJA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].Columns[ESTADO_LOJA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].ExternalColumns[ESTADO_LOJA]"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].Columns[ESTADO_LOJA]"
+                      name="ESTADO_LOJA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].Columns[PAIS_LOJA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].ExternalColumns[PAIS_LOJA]"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].Columns[PAIS_LOJA]"
+                      name="PAIS_LOJA"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].ExternalColumns[ID_LOJA]"
+                      dataType="i4"
+                      name="ID_LOJA" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].ExternalColumns[BAIRRO_LOJA]"
+                      dataType="wstr"
+                      length="255"
+                      name="BAIRRO_LOJA" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].ExternalColumns[CIDADE_LOJA]"
+                      dataType="wstr"
+                      length="255"
+                      name="CIDADE_LOJA" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].ExternalColumns[ESTADO_LOJA]"
+                      dataType="wstr"
+                      length="255"
+                      name="ESTADO_LOJA" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB].ExternalColumns[PAIS_LOJA]"
+                      dataType="wstr"
+                      length="255"
+                      name="PAIS_LOJA" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Erro de Origem OLE DB].Columns[ID_LOJA]"
+                      dataType="i4"
+                      lineageId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Erro de Origem OLE DB].Columns[ID_LOJA]"
+                      name="ID_LOJA" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Erro de Origem OLE DB].Columns[BAIRRO_LOJA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Erro de Origem OLE DB].Columns[BAIRRO_LOJA]"
+                      name="BAIRRO_LOJA" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Erro de Origem OLE DB].Columns[CIDADE_LOJA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Erro de Origem OLE DB].Columns[CIDADE_LOJA]"
+                      name="CIDADE_LOJA" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Erro de Origem OLE DB].Columns[ESTADO_LOJA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Erro de Origem OLE DB].Columns[ESTADO_LOJA]"
+                      name="ESTADO_LOJA" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Erro de Origem OLE DB].Columns[PAIS_LOJA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Erro de Origem OLE DB].Columns[PAIS_LOJA]"
+                      name="PAIS_LOJA" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Fluxo_DW\STG_dProdutos"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="STG_dProdutos"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[TB_PRODUTOS]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Fluxo_DW\STG_dProdutos.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.STG]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.STG]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].Columns[ID_PRODUTO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].ExternalColumns[ID_PRODUTO]"
+                      lineageId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].Columns[ID_PRODUTO]"
+                      name="ID_PRODUTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].Columns[PRODUTO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].ExternalColumns[PRODUTO]"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].Columns[PRODUTO]"
+                      name="PRODUTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].Columns[ID_CATEGORIA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].ExternalColumns[ID_CATEGORIA]"
+                      lineageId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].Columns[ID_CATEGORIA]"
+                      name="ID_CATEGORIA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].Columns[CATEGORIA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].ExternalColumns[CATEGORIA]"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].Columns[CATEGORIA]"
+                      name="CATEGORIA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].Columns[FORNECEDOR_PRODUTO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].ExternalColumns[FORNECEDOR_PRODUTO]"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].Columns[FORNECEDOR_PRODUTO]"
+                      name="FORNECEDOR_PRODUTO"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].ExternalColumns[ID_PRODUTO]"
+                      dataType="i4"
+                      name="ID_PRODUTO" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].ExternalColumns[PRODUTO]"
+                      dataType="wstr"
+                      length="255"
+                      name="PRODUTO" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].ExternalColumns[ID_CATEGORIA]"
+                      dataType="i4"
+                      name="ID_CATEGORIA" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].ExternalColumns[CATEGORIA]"
+                      dataType="wstr"
+                      length="255"
+                      name="CATEGORIA" />
+                    <externalMetadataColumn
+                      refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB].ExternalColumns[FORNECEDOR_PRODUTO]"
+                      dataType="wstr"
+                      length="255"
+                      name="FORNECEDOR_PRODUTO" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Erro de Origem OLE DB].Columns[ID_PRODUTO]"
+                      dataType="i4"
+                      lineageId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Erro de Origem OLE DB].Columns[ID_PRODUTO]"
+                      name="ID_PRODUTO" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Erro de Origem OLE DB].Columns[PRODUTO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Erro de Origem OLE DB].Columns[PRODUTO]"
+                      name="PRODUTO" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Erro de Origem OLE DB].Columns[ID_CATEGORIA]"
+                      dataType="i4"
+                      lineageId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Erro de Origem OLE DB].Columns[ID_CATEGORIA]"
+                      name="ID_CATEGORIA" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Erro de Origem OLE DB].Columns[CATEGORIA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Erro de Origem OLE DB].Columns[CATEGORIA]"
+                      name="CATEGORIA" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Erro de Origem OLE DB].Columns[FORNECEDOR_PRODUTO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Erro de Origem OLE DB].Columns[FORNECEDOR_PRODUTO]"
+                      name="FORNECEDOR_PRODUTO" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Fluxo_DW.Paths[Saída de Origem OLE DB]"
+              endId="Package\Fluxo_DW\DW_dClientes.Inputs[Entrada de Destino OLE DB]"
+              name="Saída de Origem OLE DB"
+              startId="Package\Fluxo_DW\STG_dClientes.Outputs[Saída de Origem OLE DB]" />
+            <path
+              refId="Package\Fluxo_DW.Paths[Saída de Origem OLE DB1]"
+              endId="Package\Fluxo_DW\DW_dLojas.Inputs[Entrada de Destino OLE DB]"
+              name="Saída de Origem OLE DB"
+              startId="Package\Fluxo_DW\STG_dLojas.Outputs[Saída de Origem OLE DB]" />
+            <path
+              refId="Package\Fluxo_DW.Paths[Saída de Origem OLE DB2]"
+              endId="Package\Fluxo_DW\DW_dProdutos.Inputs[Entrada de Destino OLE DB]"
+              name="Saída de Origem OLE DB"
+              startId="Package\Fluxo_DW\STG_dProdutos.Outputs[Saída de Origem OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<Objects
+  Version="8">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="126.4,41.6"
+          Id="Package\Fluxo_DW"
+          TopLeft="164.285717083483,81.8235305593088" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Fluxo_DW">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="131.2,41.6"
+          Id="Package\Fluxo_DW\DW_dLojas"
+          TopLeft="260.000004427774,160.588237546307" />
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\Fluxo_DW\DW_dProdutos"
+          TopLeft="467.142865098253,143.000002005521" />
+        <NodeLayout
+          Size="146.4,41.6"
+          Id="Package\Fluxo_DW\STG_dClientes"
+          TopLeft="25.0000004257475,45.8823535846592" />
+        <NodeLayout
+          Size="133.6,41.6"
+          Id="Package\Fluxo_DW\STG_dLojas"
+          TopLeft="233.571432549126,48.1764712638921" />
+        <NodeLayout
+          Size="144,41.6"
+          Id="Package\Fluxo_DW\DW_dClientes"
+          TopLeft="37.1428577753963,156.764708080919" />
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\Fluxo_DW\STG_dProdutos"
+          TopLeft="435.000007408006,48.1764712638922" />
+        <EdgeLayout
+          Id="Package\Fluxo_DW.Paths[Saída de Origem OLE DB2]"
+          TopLeft="510.600007408006,89.7764712638922">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="30.9428576902465,53.2235307416292"
+              Start="0,0"
+              End="30.9428576902465,45.7235307416292">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.6117653708146" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.6117653708146"
+                    Point2="0,26.6117653708146"
+                    Point3="4,26.6117653708146" />
+                  <mssgle:LineSegment
+                    End="26.9428576902465,26.6117653708146" />
+                  <mssgle:CubicBezierSegment
+                    Point1="26.9428576902465,26.6117653708146"
+                    Point2="30.9428576902465,26.6117653708146"
+                    Point3="30.9428576902465,30.6117653708146" />
+                  <mssgle:LineSegment
+                    End="30.9428576902465,45.7235307416292" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Fluxo_DW.Paths[Saída de Origem OLE DB1]"
+          TopLeft="300.371432549127,89.7764712638921">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="25.2285718786474,70.811766282415"
+              Start="0,0"
+              End="25.2285718786474,63.311766282415">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.4058831412075" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.4058831412075"
+                    Point2="0,35.4058831412075"
+                    Point3="4,35.4058831412075" />
+                  <mssgle:LineSegment
+                    End="21.2285718786474,35.4058831412075" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.2285718786474,35.4058831412075"
+                    Point2="25.2285718786474,35.4058831412075"
+                    Point3="25.2285718786474,39.4058831412075" />
+                  <mssgle:LineSegment
+                    End="25.2285718786474,63.311766282415" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Fluxo_DW.Paths[Saída de Origem OLE DB]"
+          TopLeft="98.2000004257475,87.4823535846592">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.9428573496488,69.2823544962596"
+              Start="0,0"
+              End="10.9428573496488,61.7823544962596">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.6411772481298" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.6411772481298"
+                    Point2="0,34.6411772481298"
+                    Point3="4,34.6411772481298" />
+                  <mssgle:LineSegment
+                    End="6.94285734964876,34.6411772481298" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.94285734964876,34.6411772481298"
+                    Point2="10.9428573496488,34.6411772481298"
+                    Point3="10.9428573496488,38.6411772481298" />
+                  <mssgle:LineSegment
+                    End="10.9428573496488,61.7823544962596" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Fluxo_DW\DW_dLojas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Fluxo_DW\DW_dProdutos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Fluxo_DW\STG_dClientes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Fluxo_DW\STG_dLojas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Fluxo_DW\DW_dClientes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Fluxo_DW\STG_dProdutos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
