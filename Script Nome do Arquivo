@@ -1,0 +1,1 @@
+"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="+ @[User::Nome_do_Arquivo] +";Extended Properties=\"Excel 12.0 XML;HDR=YES\""
