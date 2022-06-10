@@ -1,0 +1,3 @@
+--> Converte Numero para String (DT_WSTR,12)  
+
+""+  @[User::CAMINHO_ANEXO_INIT]+(DT_WSTR,12) @[User::NUM_LOJA]+ @[User::CAMINHO_ANEXO_FIN]
